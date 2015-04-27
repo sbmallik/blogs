@@ -6,6 +6,8 @@ Background:
 
 Scenario:
         Given I am on a blog asset page
+	When I complete the google survey
+	Then The google survey disappears from the asset page
         Then I should see the "Asset headline"
                 And I should see the "Blog ribbon"
                 And I should see the "Author link"
@@ -14,7 +16,7 @@ Scenario:
                 And I should see the "Tag Cloud"
                 And I should see the "Author Headshot"
                 And I should see the "Author Name"
-#               And I should see the "Author short bio"
+		And I should see the "Author short bio"
                 And I should see the "More From"
                 And I should see at least 3 assets in "More From" section
                 And I should see the "Blog Landing Page link"

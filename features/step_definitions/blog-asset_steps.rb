@@ -7,6 +7,35 @@ Given(/^I am on a blog asset page$/) do
 	expect(page).to have_css('.asset.blog')
 end
 
+When(/I complete the google survey$/) do
+	within_frame('t402-prompt-iframe') do
+#	Enclose this with a for loop 
+#	(0..10).each do |i|
+#		if not first('.t402-response').nil?
+#			find('.t402-response', match: :first).click
+#		elsif not first('.t402-open-input').nil?
+#			find('.t402-open-input').set('testing')
+#			find('.t402-open-submit').click
+#		elsif not first('.t402-multichoice-row').nil?		
+#			find('.t402-multichoice-row', match: :first).click
+#			find('.t402-open-multiselect-submit').click
+#               elsif not first('.t402-ratings').nil?
+#                       find('.t402-rating-star', match: :first).click
+#		else
+#			break
+#		end
+#	end
+		while first('.t402-response').nil? do
+			find(:id, 't402-task-flag').click
+		end
+		find('.t402-response', match: :first).click
+	end unless first(:id, 't402-prompt-iframe').nil?
+end
+
+Then(/^The google survey disappears from the asset page$/) do
+	expect(page).to have_no_css(:id, '.t402-prompt-iframe')
+end
+
 Then(/^I should see the "(.*?)"$/) do | page_element |
 	@target_class = '.story-headline-module' if(page_element.downcase == 'asset headline')
 	@target_class = '.asset-metabar-ribbon-link' if(page_element.downcase == 'blog ribbon')
