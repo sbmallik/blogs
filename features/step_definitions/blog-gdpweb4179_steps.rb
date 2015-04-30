@@ -8,7 +8,7 @@ end
 
 Then(/^I should not see an image with the most recent asset link$/) do
 	within(".blpm-post.active", match: :first) do
-		expect(page).to have_no_css(".blpm-feature-image")
+		expect(page).not_to have_css(".blpm-feature-image")
 	end
 end
 
@@ -25,5 +25,5 @@ end
 
 Then(/^I should not see the fall-back image on "(.*?)" landing page link$/) do | blog_name |
 	link_name = "/blog/#{blog_name.gsub(/\s+/, "").downcase}/"
-	expect(find("a[href='#{link_name}']")).to have_no_css(".bigpm-image-film")
+	expect(find("a[href='#{link_name}']")).not_to have_css(".bigpm-image-film")
 end
